@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'doing:update' item.id %}" novalidate>
+  {% csrf_token %}
+  {{ form }}
+    <a href=""> <button type="submit">Submit</button></a>
+</form>
+</body>
+</html>

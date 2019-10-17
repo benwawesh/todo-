@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>it is working</h1>
+<form action="todonext" method="POST">
+    {% csrf_token %}
+    {{ form.text }}
+    <input type="submit" name="submit" value="Submit">
+    <a href="{% url 'doing:deletecompleted' %}"> <button type="button">Delete Completed</button></a>
+    <a href="{% url 'doing:deleteall' %}"> <button type="button">Delete all</button></a>
+</form>
+
+<ul>
+{% for element in what %}
+{#    {% if element.complete %}#}
+{#    <li {{ element.text }}></li>#}
+{#    {% else %}#}
+{#    <a href="#" <li {{ element.text }}></li> </a>#}
+{#    {% endif %}#}
+    {% if element.complete %}
+   <li>{{ element.text }}</li>
+        {% else %}
+      <a href="{% url 'doing:complete' element.id %}" >
+          <li>{{ element.text }}<a href="{%url 'doing:delete' element.id %}"> <button type="button">Delete</button></a>
+          <a href="{%url 'doing:edit' element.id%}"> <button type="button">edit</button></a></li></li>
+
+      </a>
+    {% endif %}
+{% endfor %}
+
+</ul>
+</body>
+</html>
